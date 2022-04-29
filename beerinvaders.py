@@ -327,20 +327,19 @@ class SpaceInvaders(object):
         self.mainScreen = True
         self.gameOver = False
         self.enemyPosition = ENEMY_DEFAULT_POSITION
-        self.titleText = Text(FONT, 50, 'Beer Invaders', WHITE, 164, 155)
-        self.titleText2 = Text(FONT, 25, 'Press any key to continue', WHITE,
-                               201, 225)
+        self.titleText = Text(FONT, 50, 'Beer Invaders', WHITE, 164, 205)
+        self.titleText2 = Text(FONT, 25, 'Press any key to continue', WHITE, 201, 275)
         self.gameOverText = Text(FONT, 50, 'Game Over', WHITE, 250, 270)
         self.nextRoundText = Text(FONT, 50, 'Next Round', WHITE, 240, 270)
-        self.enemy1Text = Text(FONT, 25, '   =   10 pts', GREEN, 368, 270)
-        self.enemy2Text = Text(FONT, 25, '   =  20 pts', BLUE, 368, 320)
-        self.enemy3Text = Text(FONT, 25, '   =  30 pts', PURPLE, 368, 370)
-        self.enemy4Text = Text(FONT, 25, '   =  ?????', RED, 368, 420)
-        self.addressPlaceholder = Text(FONT, 25, 'PUT YOUR ADDRESS', WHITE, 250, 10)
+        self.enemy1Text = Text(FONT, 25, '   =   10 pts', GREEN, 368, 330)
+        self.enemy2Text = Text(FONT, 25, '   =  20 pts', BLUE, 368, 380)
+        self.enemy3Text = Text(FONT, 25, '   =  30 pts', PURPLE, 368, 430)
+        self.enemy4Text = Text(FONT, 25, '   =  ?????', RED, 368, 480)
+        self.addressPlaceholder = Text(FONT, 25, 'PRESS V TO PUT YOUR ADDRESS', WHITE, 180, 150)
         self.scoreText = Text(FONT, 20, 'Score', WHITE, 5, 5)
         self.livesText = Text(FONT, 20, 'Lives ', WHITE, 640, 5)
         self.input_rect = Rect(200, 200, 140, 32)
-        self.addressText = Text(FONT, 20, '0x...', GREEN, 205, 60)
+        self.addressText = Text(FONT, 20, '0x...', GREEN, 205, 110)
 
         self.life1 = Life(715, 3)
         self.life2 = Life(742, 3)
@@ -470,11 +469,11 @@ class SpaceInvaders(object):
         self.addressInput = IMAGES['white']
         self.addressInput = transform.scale(self.addressInput, (400, 40))
 
-        self.screen.blit(self.enemy1, (318, 270))
-        self.screen.blit(self.enemy2, (318, 320))
-        self.screen.blit(self.enemy3, (318, 370))
-        self.screen.blit(self.enemy4, (299, 420))
-        self.screen.blit(self.addressInput, (200, 50))
+        self.screen.blit(self.enemy1, (318, 330))
+        self.screen.blit(self.enemy2, (318, 380))
+        self.screen.blit(self.enemy3, (318, 430))
+        self.screen.blit(self.enemy4, (299, 480))
+        self.screen.blit(self.addressInput, (200, 100))
 
     def check_collisions(self):
         sprite.groupcollide(self.bullets, self.enemyBullets, True, True)
@@ -596,9 +595,9 @@ class SpaceInvaders(object):
                             global walletAddress
                             walletAddress = pygame.scrap.get("text/plain;charset=utf-8").decode()
                             if len(walletAddress) > 26:
-                                self.addressText = Text(FONT, 20, walletAddress[0:26], GREEN, 205, 60)
+                                self.addressText = Text(FONT, 20, walletAddress[0:26], GREEN, 205, 110)
                             else:
-                                self.addressText = Text(FONT, 20, walletAddress, GREEN, 205, 60)
+                                self.addressText = Text(FONT, 20, walletAddress, GREEN, 205, 110)
                         else:
                             self.livesGroup.add(self.life1, self.life2, self.life3)
                             self.reset(0)
