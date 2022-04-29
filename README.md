@@ -9,7 +9,7 @@ Deploy your own smart contract and change the startonTransfer function to call y
 
 If you want to lauch the game:
 
-1. Clone the repisotiry
+1. Clone the repository
 2. OPTIONNAL - Create a .env and add this line : "STARTON_API_KEY=YOUR_API_KEY".
 3. OPTIONNAL - Go to Starton and deploy an erc20 token. The game will send 1 token you deployed. you can custom as you want if,
 for example, you want to send an nft.
