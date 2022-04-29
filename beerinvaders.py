@@ -24,13 +24,12 @@ YELLOW = (241, 255, 0)
 BLUE = (80, 255, 239)
 PURPLE = (203, 0, 255)
 RED = (237, 28, 36)
+BLACK = (0, 0, 0)
 
 SCREEN = display.set_mode((800, 600))
 FONT = FONT_PATH + 'space_invaders.ttf'
-IMG_NAMES = ['ship', 'mystery',
-             'beer',
-             'explosionblue', 'explosiongreen', 'explosionpurple',
-             'laser', 'enemylaser', 'white']
+IMG_NAMES = ['ship', 'mystery', 'beer', 'explosionblue', 'explosiongreen',
+'explosionpurple', 'laser', 'enemylaser', 'white']
 IMAGES = {name: image.load(IMAGE_PATH + '{}.png'.format(name)).convert_alpha()
           for name in IMG_NAMES}
 
@@ -339,7 +338,7 @@ class SpaceInvaders(object):
         self.scoreText = Text(FONT, 20, 'Score', WHITE, 5, 5)
         self.livesText = Text(FONT, 20, 'Lives ', WHITE, 640, 5)
         self.input_rect = Rect(200, 200, 140, 32)
-        self.addressText = Text(FONT, 20, '0x...', GREEN, 205, 110)
+        self.addressText = Text(FONT, 20, '0x...', BLACK, 205, 110)
 
         self.life1 = Life(715, 3)
         self.life2 = Life(742, 3)
@@ -533,19 +532,19 @@ class SpaceInvaders(object):
         if len(walletAddress) > 26:
             load_dotenv()
             try:
-                r = requests.post('https://api.starton.io/v2/smart-contract/polygon-mumbai/0xBF5C57877c2e24A64A9e1FF4f96099Bb53cf4E1C/call',
-                json={
-                                       "functionName": "transfer",
-                                       "signerWallet": "0x2A1f28147f3A47756983832a7f8B43243BC22Ab7",
-                                       "speed": "low",
-                                       "params": [
-                                           walletAddress,
-                                           "1000000000000000000"
-                                       ],
-
-                                   },
-                           headers= {"x-api-key": os.getenv("STARTON_API_KEY")}
-                           )
+                r = requests.post(
+                    'https://api.starton.io/v2/smart-contract/polygon-mumbai/0xBF5C57877c2e24A64A9e1FF4f96099Bb53cf4E1C/call',
+                    json = {
+                       "functionName": "transfer",
+                       "signerWallet": "0x2A1f28147f3A47756983832a7f8B43243BC22Ab7",
+                       "speed": "low",
+                       "params": [
+                           walletAddress,
+                           "1000000000000000000"
+                       ],
+                   },
+                   headers= {"x-api-key": os.getenv("STARTON_API_KEY")}
+               )
                 print ("status : ")
                 print (r)
                 print ("reponse: ")
@@ -594,10 +593,7 @@ class SpaceInvaders(object):
                         if e.key == K_v:
                             global walletAddress
                             walletAddress = pygame.scrap.get("text/plain;charset=utf-8").decode()
-                            if len(walletAddress) > 26:
-                                self.addressText = Text(FONT, 20, walletAddress[0:26], GREEN, 205, 110)
-                            else:
-                                self.addressText = Text(FONT, 20, walletAddress, GREEN, 205, 110)
+                            self.addressText = Text(FONT, 20, walletAddress[0:26], BLACK, 205, 110)
                         else:
                             self.livesGroup.add(self.life1, self.life2, self.life3)
                             self.reset(0)
@@ -609,8 +605,7 @@ class SpaceInvaders(object):
                     currentTime = time.get_ticks()
                     if currentTime - self.gameTimer < 3000:
                         self.screen.blit(self.background, (0, 0))
-                        self.scoreText2 = Text(FONT, 20, str(self.score),
-                                               GREEN, 85, 5)
+                        self.scoreText2 = Text(FONT, 20, str(self.score), GREEN, 85, 5)
                         self.scoreText.draw(self.screen)
                         self.scoreText2.draw(self.screen)
                         self.nextRoundText.draw(self.screen)
@@ -626,8 +621,7 @@ class SpaceInvaders(object):
                     currentTime = time.get_ticks()
                     self.play_main_music(currentTime)
                     self.screen.blit(self.background, (0, 0))
-                    self.scoreText2 = Text(FONT, 20, str(self.score), GREEN,
-                                           85, 5)
+                    self.scoreText2 = Text(FONT, 20, str(self.score), GREEN, 85, 5)
                     self.scoreText.draw(self.screen)
                     self.scoreText2.draw(self.screen)
                     self.livesText.draw(self.screen)
