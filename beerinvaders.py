@@ -12,6 +12,7 @@ from os.path import abspath, dirname
 from random import choice
 import requests
 
+
 BASE_PATH = abspath(dirname(__file__))
 FONT_PATH = BASE_PATH + '/fonts/'
 IMAGE_PATH = BASE_PATH + '/images/'
@@ -28,9 +29,8 @@ BLACK = (0, 0, 0)
 SCREEN = display.set_mode((800, 600))
 FONT = FONT_PATH + 'space_invaders.ttf'
 IMG_NAMES = ['ship', 'mystery', 'beer', 'explosionblue', 'explosiongreen',
-'explosionpurple', 'laser', 'enemylaser', 'white']
-IMAGES = {name: image.load(IMAGE_PATH + '{}.png'.format(name)).convert_alpha()
-          for name in IMG_NAMES}
+            'explosionpurple', 'laser', 'enemylaser', 'white']
+IMAGES = {name: image.load(IMAGE_PATH + '{}.png'.format(name)).convert_alpha() for name in IMG_NAMES}
 
 ENEMY_DEFAULT_POSITION = 65
 ENEMY_MOVE_DOWN = 35
