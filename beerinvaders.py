@@ -17,7 +17,6 @@ FONT_PATH = BASE_PATH + '/fonts/'
 IMAGE_PATH = BASE_PATH + '/images/'
 SOUND_PATH = BASE_PATH + '/sounds/'
 
-# Colors (R, G, B)
 WHITE = (255, 255, 255)
 GREEN = (78, 255, 87)
 YELLOW = (241, 255, 0)
@@ -33,7 +32,7 @@ IMG_NAMES = ['ship', 'mystery', 'beer', 'explosionblue', 'explosiongreen',
 IMAGES = {name: image.load(IMAGE_PATH + '{}.png'.format(name)).convert_alpha()
           for name in IMG_NAMES}
 
-ENEMY_DEFAULT_POSITION = 65  # Initial value for a new game
+ENEMY_DEFAULT_POSITION = 65
 ENEMY_MOVE_DOWN = 35
 
 pygame.init()
@@ -368,12 +367,10 @@ class SpaceInvaders(object):
 
     def create_audio(self):
         self.sounds = {}
-        for sound_name in ['shoot', 'shoot2', 'invaderkilled', 'mysterykilled',
-                           'shipexplosion']:
+        for sound_name in ['shoot', 'shoot2', 'invaderkilled', 'mysterykilled', 'shipexplosion']:
             self.sounds[sound_name] = mixer.Sound(
                 SOUND_PATH + '{}.wav'.format(sound_name))
             self.sounds[sound_name].set_volume(0.2)
-
         self.musicNotes = [mixer.Sound(SOUND_PATH + '{}.wav'.format(i)) for i
                            in range(4)]
         for sound in self.musicNotes:
@@ -613,7 +610,6 @@ class SpaceInvaders(object):
                         self.livesGroup.update()
                         self.check_input()
                     if currentTime - self.gameTimer > 3000:
-                        # Move enemies closer to bottom
                         self.enemyPosition += ENEMY_MOVE_DOWN
                         self.reset(self.score)
                         self.gameTimer += 3000
